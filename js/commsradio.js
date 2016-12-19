@@ -14,9 +14,26 @@ function Comms(onConnect,onDisconnect,onSignalChange,SetClients,onFreq,offFreq)
     "transports" : ["websocket"]                //forces the transport to be only websocket. Server needs to be setup as well/
 }
 //cwradio.init({callsign:callsign, location:{lat:locationlat, long:locationlong}, level:cwlevel });
- this.keyreleased = function () {socket.emit('release');};
- this.keypressed = function () {socket.emit('press');};
-this.freqChange = function (freq){socket.emit('freq',{freq:freq});};
+var txmode = false;
+var txrefresh = (function () {
+    var timeout ;
+	txmode = false;
+	$('#txmode').text('NOTX');
+    return function () {
+		$('#txmode').text('TX');
+		if(timeout !== undefined)  clearInterval(timeout);
+		timeout = setInterval(function(){
+			txmode = false;
+			$('#txmode').text('NOTX');
+	},3000);
+	}
+})();
+
+
+
+ 	this.keyreleased = function () {socket.emit('release');txrefresh();};
+ 	this.keypressed = function () {socket.emit('press');txrefresh();};
+	this.freqChange = function (freq){socket.emit('freq',{freq:freq});};
 	this.init = function (info,success,failure) {
 			 socket = io(connectionOptions);
 			 socket.on('connect', function(){

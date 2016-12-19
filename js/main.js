@@ -26,7 +26,7 @@ console.log('pressed');
 function offFreq()
 {
 	console.log('released');
-audio.keyreleased();
+audio.keyreleased(); 
 }
 	//inits
 	fe = new FrontEnd();
