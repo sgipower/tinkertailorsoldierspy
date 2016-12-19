@@ -1,0 +1,66 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <style>
+body{text-align: center;background: #f2f6f8;}
+#img{position:absolute;z-index:1;}
+
+#container{
+    display:inline-block;
+    width:100%; 
+	}
+
+#canvass{
+    position:relative;
+    z-index:20;
+	width:80%; 
+}
+#canvas{
+    position:relative;
+	z-index:20;
+}
+@font-face {
+    font-family: 'KulminoituvaRegular';
+    src: url('digital.ttf');
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+</style>
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body bgcolor="#E6E6FA">
+<div class="noselect"> 
+<h1>CW RADIO</h1>
+</div>
+<div id="container" class="noselect"> 
+</div>
+<div> 
+    <button type="button" id="draw">Click Me!</button> 
+</div>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script src="frontend.js"></script>
+  <script>
+	var fe = new FrontEnd();
+		fe.init('container');
+
+  </script>
+</body>
+</html>

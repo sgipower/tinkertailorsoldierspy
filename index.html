@@ -1,0 +1,179 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.1/themes/fontawesome-stars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/css/bootstrap-slider.css">
+  <link rel="stylesheet" href="css/mycss.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/bootstrap-slider.js"></script>
+  <script src="https://www.html5rocks.com/en/tutorials/webaudio/intro/js/buffer-loader.js"></script>  
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	<script src="js/jquery.barrating.js"></script>
+	<script src="js/frontend.js"></script>
+	<script src="js/commsradio.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/main.js"></script>
+  <script src="js/audio.js"></script>
+  <script>
+  
+  </script>
+  <!--[if lt IE 9]> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<div class="container-fluid noselect">
+  <h1 style="font-family: 'KulminoituvaRegular', sans-serif;">CW RADIO!</h1>
+  <div class="row">
+    <div class="col-sm-9" style="background-color:lavender;">
+		<div id="container" class="short-div noselect nopadding" ></div>
+
+		<div class="row">
+		  <div class="col-sm-8" style="background-color:lavenderblush;">
+			Level 2: .col-xs-8 .col-sm-6
+		  </div>
+		  <div class="col-sm-4" style="background-color:lavender;">
+			  <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change CW KEY:<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="vdpm">Vertical</a></li>
+            <li><a href="#" id="hdpm">Horizontal</a></li>
+          </ul>
+        </div>
+        <img id="cwkeyimg" src="" alt="" style="width:100%;height: 302px;">
+        <div id="cwhkeyspeeddiv" style="display:none">
+          <span >Speed: </span> <span id="cwhkeyspeedspan" ></span>
+          </br>
+          <input type="text" id="cwhkeyspeed" class="span2" value="" data-slider-min="60" data-slider-max="240" data-slider-step="10" data-slider-value="180" data-slider-orientation="Horizontal" data-slider-selection="after" data-slider-tooltip="hide"> 
+        </div>
+      </div>
+		</div>
+	</div>
+    <div class="col-sm-3" style="background-color:lavenderblush;text-align:left;">
+	<h3><span style="text-align:center;"><b>Personal Information</b></span></h3>
+	<img id="imgs1" class="signalLevel" src="img/s1.png"/>
+	<img id="imgs2" class="signalLevel" src="img/s2.png"/>
+	<img id="imgs3" class="signalLevel" src="img/s3.png"/>
+	<img id="imgs4" class="signalLevel" src="img/s4.png"/>
+	<img id="imgs5" class="signalLevel" src="img/s5.png"/>
+	<br><br>
+	<h4><b>Callsign:</b> <span id="callsign">-</span></h4>
+	<h4><b>Connection:</b> <span id="connection">Disconnected</span></h4>
+	<h4><b>CW Level:</b>  <span id="level">-</span></h4>
+	<h4><b>Active Users:</b> <span id="actusers">-</span></h4>
+	<h4><b>Your location:</b> <span id="location">-</span></h4>
+  <br>
+ 
+	<button type="button" id="clickmebutton">deletecookies</button>
+	</div>
+  </div>
+</div>
+	<!-- Modal 'Welcome' -->
+  <div class="modal fade" id="intro1Modal" role="dialog" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Information</h4>
+        </div>
+        <div class="modal-body">
+          <p style="text-align:left;">This webpage allows you to communicate with other on-line users using CW  modulation without a license or a rig.</p>
+		  <p style="text-align:left;">Feel free to tune a frequency and start calling CQ, you may find somebody listening to your frequency.</p>
+		  <p style="text-align:left;">This page uses cookies.</p>
+		  
+        </div>
+        <div class="modal-footer"><b>To start press next.</b>
+          <button type="button" class="btn btn-default">Next</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	<!-- Modal2 'Callsign'-->
+  <div class="modal fade" id="getCallsignModal" role="dialog" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Configuration</h4>
+        </div>
+        <div class="modal-body">
+			<span style="text-align:left;">Please pick your desired Callsign, this will identify you. Please don't use a real callsign if you don't hold a valid license. Use a nickname instead.</span>
+			</BR></BR>
+			<span style="text-align:left;">Callsign: <input type="text" id="callsigninput"/></span>
+			</BR></BR>
+			<span id ="errormsg" style="color:red"> </span>
+        </div>
+        <div class="modal-footer"><b>Press next to continue</b>
+          <button type="button" class="btn btn-default">Next</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal3 'Localization' -->
+  <div class="modal fade" id="geoLocationModal" role="dialog" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Map Location</h4>
+        </div>
+        <div class="modal-body">
+			<p style="text-align:left;">If you want to be able to see all connected users in a map you have to share your location. We will show your location with a margin of 10KM..
+			</BR>
+			<p style="text-align:left;">Do you want to share your location?
+			 
+			</p>
+			 <p style="text-align:left;">If you click Yes, your browser may ask your permission. Click Share.</p>
+        </div>
+        <div class="modal-footer">
+         <button type="button" id="buttonYesGeo" class="btn">Yes</button>  <button type="button" id="buttonNoGeo" class="btn">No</button>
+        </div>
+      </div>
+      
+    </div>
+	</div>
+		 <!-- Modal3 'Level' -->
+  <div class="modal fade" id="LevelModal" role="dialog" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">CW Level</h4>
+        </div>
+        <div class="modal-body">
+			<p style="text-align:left;">Let other users know your CW level, so they can find users with similar level to practice/chat
+			</BR>
+			<p style="text-align:left;">Please choose your level:</p>
+			<p style="text-align:center;">
+				<select id="levelselect" >
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				</select>
+			</p>
+        </div>
+        <div class="modal-footer">
+						
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>

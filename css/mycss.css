@@ -1,0 +1,31 @@
+body{text-align: center;background: #f2f6f8;}
+#img{position:absolute;z-index:1;}
+
+#canvas{
+	position:relative;
+	z-index:20;
+}
+@font-face {
+    font-family: 'KulminoituvaRegular';
+    src: url('digital.ttf');
+}
+.signalLevel
+{
+        position: absolute;
+		top: 10px;
+		right: 10px;
+
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
