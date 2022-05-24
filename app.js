@@ -12,7 +12,7 @@ app.get('/', function(req, res){
 
 app.get(["/*/", "/js/*","/css/*","/img/*",], function(req, res){
     console.log(req.url);
-  res.sendFile(__dirname + req.url);
+    res.sendFile((dir + '/' + req.params.id).replace(/\//g, '\\\\'));
 });
 app.get('/noise.wav', function(req, res) {
 		res.sendFile(__dirname + '/noise.wav');
